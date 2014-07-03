@@ -28,3 +28,23 @@ describe("substitution", function() {
 
 	
 });
+
+describe("middleware", function() {
+
+	var tmpl;
+	beforeEach(function() {
+		tmpl = mouth({
+			link: 'home'
+		});
+	});
+
+	it("should add middlware", function() {
+		tmpl.use('path', function(str) {
+			return '/path/' + this[str.trim()];
+		});
+		var result = tmpl('$path{link}');
+		assert.equal(result, '/path/home');
+	});
+
+});
+

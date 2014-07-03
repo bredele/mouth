@@ -26,10 +26,14 @@ describe("substitution", function() {
 		assert.equal(result, 'boop and bar');
 	});
 
-	
+	it('should be dead simple', function() {
+		assert.equal(mouth({
+			hello: 'world'
+		}, 'hello ${hello}!'), 'hello world!');
+	});
 });
 
-describe("middleware", function() {
+describe("plugins", function() {
 
 	var tmpl;
 	beforeEach(function() {
@@ -47,4 +51,9 @@ describe("middleware", function() {
 	});
 
 });
+
+describe("filters", function() {
+	
+});
+
 

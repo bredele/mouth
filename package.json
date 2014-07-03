@@ -1,0 +1,25 @@
+{
+  "name": "mouth",
+  "version": "0.0.0",
+  "description": "and yet another template engine",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bredele/mouth.git"
+  },
+  "keywords": [
+    "template"
+  ],
+  "author": "Olivier Wietrich <olivier.wietrich@gmail.com> (http://github.com/bredele)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bredele/mouth/issues"
+  },
+  "homepage": "https://github.com/bredele/mouth"
+}

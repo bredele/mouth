@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/bredele/mouth/issues"
   },
-  "homepage": "https://github.com/bredele/mouth"
+  "homepage": "https://github.com/bredele/mouth",
+  "devDependencies": {
+    "mocha": "^1.20.1"
+  }
 }

@@ -15,7 +15,7 @@ nodejs:
 
 ## Usage
 
-  Basically `mouth` do everything that others template engine do...
+  Basically `mouth` does everything that others template engine do...
 
 ```js
 var mouth = require('mouth');

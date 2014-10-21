@@ -61,6 +61,8 @@ describe('substitution', function() {
 // 		}, 'hello ${hello}!'), 'hello world!');
 // 	});
 // });
+// 
+// /\$([^{}]*)\{([^{}]*)\}/g
 
 // describe("mixins", function() {
 

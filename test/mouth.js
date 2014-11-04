@@ -24,9 +24,8 @@ describe("compiler", function() {
 	});
 
 	it('should return the expression properties', function() {
-		var props = mouth('${beep} and ${boop}');
-		console.log('what', props);
-		//assert.deepEqual(props, ['beep', 'boop']);
+		var props = mouth('${beep} and ${boop}').props;
+		assert.deepEqual(props, ['beep', 'boop']);
 	})
 
 

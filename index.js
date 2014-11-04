@@ -26,10 +26,10 @@ var brackets = new RegExp(/\$\{([^{}]*)\}/g);
 module.exports = function(str) {
   var props = [];
   var text = str.replace(brackets, function(_, expr) {
-    return compile(expr, props);
+    return '"+' + compile(expr, props) + '+"';
   });
   return {
-    text: Function('o', 'return ' + text),
+    text: Function('o', 'return "' + text + '"'),
     props: props
   };
 };
@@ -54,7 +54,6 @@ module.exports = function(str) {
 
 function compile(str, arr) {
   return str.replace(identifier, function(expr) {
-    console.log(expr);
     if(arr.indexOf(expr) < 0) arr.push(expr);
     return 'o.' + expr;
   });

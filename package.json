@@ -1,6 +1,6 @@
 {
   "name": "mouth",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "and yet another template engine",
   "main": "index.js",
   "directories": {

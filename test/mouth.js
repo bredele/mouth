@@ -8,22 +8,25 @@ var assert = require('assert');
 
 describe("compiler", function() {
 	
-	var tmpl;
-	beforeEach(function() {
-		tmpl = mouth({
-			beep: 'boop',
-			foo: 'bar'
-		});
+	it('should return a compiled function', function() {
+		var result = mouth('${ beep }').text;
+		assert.equal(result({
+			beep: 'boop'
+		}), 'boop');
 	});
 
-	it('should return a compiled function', function() {
-		var result = tmpl('${ beep }').text;
-		assert.equal(result(), 'boop');
+	it('should return a compiled function from an advanced expresion', function() {
+		var result = mouth('${ beep + boop }').text;
+		assert.equal(result({
+			beep: 'boop',
+			boop: 'hello'
+		}), 'boophello');
 	});
 
 	it('should return the expression properties', function() {
-		var props = tmpl('${beep} and ${boop}').props;
-		assert.deepEqual(props, ['beep', 'boop']);
+		var props = mouth('${beep} and ${boop}');
+		console.log('what', props);
+		//assert.deepEqual(props, ['beep', 'boop']);
 	})
 
 

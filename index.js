@@ -9,6 +9,14 @@ var brackets = new RegExp(/\$\{([^{}]*)\}/g);
 
 
 /**
+ * Cache expressions.
+ * @type {Object}
+ */
+
+var cache = {};
+
+
+/**
  * Substitute data variables in
  * template string.
  *
@@ -26,7 +34,8 @@ var brackets = new RegExp(/\$\{([^{}]*)\}/g);
 module.exports = function(str) {
   var props = [];
   var text = str.replace(brackets, function(_, expr) {
-    return '"+' + compile(expr, props) + '+"';
+    var result = cache[expr] = cache[expr] || compile(expr, props);
+    return '"+' + result + '+"';
   });
   return {
     text: Function('o', 'return "' + text + '"'),

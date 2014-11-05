@@ -9,16 +9,19 @@ var brackets = new RegExp(/\$\{([^{}]*)\}/g);
 
 
 /**
- * Substitute data variables in
- * template string.
+ * Compile expression.
  *
  * Examples:
- *
+ ę
+ *   // compiled expression
  *   var tmpl = mouth('${ beep }');
- *   tmpl(data);
+ *   tmpl.text(data);
+ *
+ *   // expresssion unique identifiers
+ *   tmp.props;
  *   
  * @param  {String} str
- * @return {String}
+ * @return {Object}
  * @api public
  */
 

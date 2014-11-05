@@ -1,48 +1,15 @@
 mouth
 =====
 
-  Fast and composable template engine for client/server side (and CSS).
+  Compile a string with expressions enclosed in brackets.
+ 
 
 ## Installation
-
-component:
-
-    $ component install bredele/mouth
 
 nodejs:
 
     $ npm install mouth
 
-## Usage
-
-  Basically `mouth` does everything that others template engine do...
-
-```js
-var mouth = require('mouth');
-mouth({
-	beep: 'boop'
-}, 'hello ${beep}!');
-// => hello boop!
-```
-
-  ...and more (plugins, filters, etc)!
-
-```js
-var tmpl = mouth({
-	link: 'home'
-});
-tmpl.use('path', function(str) {
-	return '/path/to/' + this[str];
-});
-
-tmpl('<a href="$path{link}"></a>');
-// => <a href="/path/to/home"></a>
-```
-
-<!-- 
-## API
-
-### plugins -->
 
 ## License
 

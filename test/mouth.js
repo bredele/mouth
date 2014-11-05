@@ -28,6 +28,16 @@ describe("compiler", function() {
 		assert.deepEqual(props, ['beep', 'boop']);
 	})
 
+	it('should compile complex expressions', function() {
+		var result = mouth('${beep + " " + cb()}').text;
+		assert.equal(result({
+			beep: 'hello',
+			cb: function() {
+				return 'world!';
+			}
+		}), 'hello world!');
+	});
+
 
 });
 

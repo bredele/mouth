@@ -4,7 +4,7 @@
  * @param  {RegExp}
  */
 
-var identifier = new RegExp(/\.\w+|\w+ *\(|"[^"]*"|'[^']*'|\/([^/]+)\/|[a-zA-Z_]\w*/g);
+var identifier = new RegExp(/\.\w+|"[^"]*"|'[^']*'|\/([^/]+)\/|[a-zA-Z_]\w*/g);
 var brackets = new RegExp(/\$\{([^{}]*)\}/g);
 
 
@@ -21,7 +21,7 @@ var brackets = new RegExp(/\$\{([^{}]*)\}/g);
  *   tmp.props;
  *   
  * @param  {String} str
- * @return {Object}
+ * @return {Object} 
  * @api public
  */
 
@@ -36,6 +36,14 @@ module.exports = function(str) {
     props: props
   };
 };
+
+
+/**
+ * Separator characters.
+ * @type {Array}
+ */
+
+var forbidden = ['"', '.'];
 
 
 /**
@@ -57,6 +65,7 @@ module.exports = function(str) {
 
 function compile(str, arr) {
   return str.replace(identifier, function(expr) {
+    if(forbidden.indexOf(expr[0]) > -1) return expr;
     if(arr.indexOf(expr) < 0) arr.push(expr);
     return 'o.' + expr;
   });

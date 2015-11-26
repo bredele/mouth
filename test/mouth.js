@@ -69,10 +69,10 @@ describe('expression', function() {
 describe('static', function() {
 
 	it('should compile string', function() {
-		var fn =  mouth('#{foo}')[0];
-		fn({
+		var fn =  mouth('#{foo}', {
 			foo: 'olivier'
-		});
+		})[0];
+
 		var str = fn({
 			foo: 'bruno'
 		})

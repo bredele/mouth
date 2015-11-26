@@ -12,16 +12,19 @@
  *   expr[1]; // => ['beep']
  *   
  * @param  {String} str
+ * @param  {Object?} data
  * @return {Object} 
  * @api public
  */
 
-module.exports = function(str) {
+module.exports = function(str, data) {
   var list = [];
-  str = str.replace(/\$\{([^{}]*)\}/g, function(_, expr) {
-    return parse(expr, list);
+  str = str.replace(/(\$|\#)\{([^{}]*)\}/g, function(_, type, expr) {
+    var compiled = parse(expr, list);
+    if(type === '#') compiled = '"' + func(compiled)(data) + '"';
+    return compiled;
   });
-  return [new Function('model', 'return ' + str), list];
+  return [func(str), list];
 };
 
 
@@ -57,6 +60,20 @@ function parse(str, arr) {
     if(!~arr.indexOf(expr)) arr.push(expr);
     return 'model.' + expr;
   });
+}
+
+
+/**
+ * Create function on the file
+ * from compiled expression.
+ *
+ * @param {String} str
+ * @return {Function}
+ * @api private
+ */
+
+function func(str) {
+  return new Function('model', 'return ' + str);
 }
 
 

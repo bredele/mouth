@@ -31,8 +31,7 @@ describe('basic', function() {
 
 describe('expression', function() {
 
-
-	it('string', function() {
+	it('should compile string', function() {
 		var interpolate =  mouth('${foo + " and " + bar}');
 		assert.equal(interpolate[0]({
 			foo: 'olivier',
@@ -41,7 +40,7 @@ describe('expression', function() {
 		assert.deepEqual(interpolate[1], ['foo', 'bar']);
 	});
 
-	it('nested data', function() {
+	it('should compile nested data', function() {
 		var interpolate =  mouth('${foo.name + " is " + bar[0]}');
 		assert.equal(interpolate[0]({
 			foo: {
@@ -52,7 +51,7 @@ describe('expression', function() {
 		assert.deepEqual(interpolate[1], ['foo', 'bar']);
 	});
 
-	it('javascript subset and function call', function() {
+	it('should compile javascript subset and function call', function() {
 		var interpolate =  mouth('${foo() ? "hello" : bar.label}');
 		assert.equal(interpolate[0]({
 			foo: function() {
@@ -65,6 +64,19 @@ describe('expression', function() {
 		assert.deepEqual(interpolate[1], ['foo', 'bar']);
 	})
 
+});
 
+describe('static', function() {
+
+	it('should compile string', function() {
+		var fn =  mouth('#{foo}')[0];
+		fn({
+			foo: 'olivier'
+		});
+		var str = fn({
+			foo: 'bruno'
+		})
+		assert.equal(str, 'olivier');
+	});
 });
 

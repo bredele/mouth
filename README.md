@@ -4,12 +4,12 @@ mouth
   Compile a string with expressions enclosed in brackets.
  
 
-## Installation
+## Usage
 
-nodejs:
-
-    $ npm install mouth
-
+```js
+var mouth = require('mouth');
+mouth('${first + " " + last}');
+```
 
 ## License
 

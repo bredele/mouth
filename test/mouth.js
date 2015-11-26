@@ -32,9 +32,11 @@ describe('basic', function() {
 describe('expression', function() {
 
 	it('should return an list of uniq variables to interpolate', function() {
-		var interpolate =  mouth('${first + last}');
+		var interpolate =  mouth('${first + last + first}');
 		assert.deepEqual(interpolate[1], ['first', 'last']);
 	});
+
+
 
 });
 

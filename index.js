@@ -17,7 +17,7 @@ module.exports = function(str) {
 
 function parse(str, arr) {
   return str.replace(/\.\w+|"[^"]*"|'[^']*'|\/([^/]+)\/|[a-zA-Z_]\w*/g, function(expr) {
-    arr.push(expr);
+    if(!~arr.indexOf(expr)) arr.push(expr);
     return 'model.' + expr;
   });
 }

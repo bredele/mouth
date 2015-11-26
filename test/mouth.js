@@ -44,6 +44,16 @@ describe('expression', function() {
 		}), 'olivier and bruno');
 	});
 
+	it('', function() {
+		var interpolate =  mouth('${foo.name + " is " + bar[0]}');
+		assert.equal(interpolate[0]({
+			foo: {
+				name: 'olivier'
+			},
+			bar: [28]
+		}), 'olivier is 28');
+	});
+
 
 });
 

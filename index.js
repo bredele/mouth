@@ -1,13 +1,5 @@
 
 /**
- * Expression and identifier regexp.
- * @param  {RegExp}
- */
-
-var brackets = new RegExp(/\$\{([^{}]*)\}/g);
-
-
-/**
  *
  *
  */
@@ -15,7 +7,7 @@ var brackets = new RegExp(/\$\{([^{}]*)\}/g);
 
 module.exports = function(str) {
   var list = [];
-  str = str.replace(brackets, function(_, expr) {
+  str = str.replace(/\$\{([^{}]*)\}/g, function(_, expr) {
     list.push(expr);
     return 'model.' + expr;
   });

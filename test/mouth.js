@@ -36,6 +36,13 @@ describe('expression', function() {
 		assert.deepEqual(interpolate[1], ['first', 'last']);
 	});
 
+	it('concatenate string', function() {
+		var interpolate =  mouth('${foo + " and " + bar}');
+		assert.equal(interpolate[0]({
+			foo: 'olivier',
+			bar: 'bruno'
+		}), 'olivier and bruno');
+	});
 
 
 });

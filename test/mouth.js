@@ -54,6 +54,18 @@ describe('expression', function() {
 		}), 'olivier is 28');
 	});
 
+	it('', function() {
+		var interpolate =  mouth('${foo() ? "hello" : bar.label}');
+		assert.equal(interpolate[0]({
+			foo: function() {
+				return true;
+			},
+			bar: {
+				label: 'world'
+			}
+		}), 'hello');
+	})
+
 
 });
 

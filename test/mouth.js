@@ -31,20 +31,17 @@ describe('basic', function() {
 
 describe('expression', function() {
 
-	it('should return an list of uniq variables to interpolate', function() {
-		var interpolate =  mouth('${first + last + first}');
-		assert.deepEqual(interpolate[1], ['first', 'last']);
-	});
 
-	it('concatenate string', function() {
+	it('string', function() {
 		var interpolate =  mouth('${foo + " and " + bar}');
 		assert.equal(interpolate[0]({
 			foo: 'olivier',
 			bar: 'bruno'
 		}), 'olivier and bruno');
+		assert.deepEqual(interpolate[1], ['foo', 'bar']);
 	});
 
-	it('', function() {
+	it('nested data', function() {
 		var interpolate =  mouth('${foo.name + " is " + bar[0]}');
 		assert.equal(interpolate[0]({
 			foo: {
@@ -52,9 +49,10 @@ describe('expression', function() {
 			},
 			bar: [28]
 		}), 'olivier is 28');
+		assert.deepEqual(interpolate[1], ['foo', 'bar']);
 	});
 
-	it('', function() {
+	it('javascript subset and function call', function() {
 		var interpolate =  mouth('${foo() ? "hello" : bar.label}');
 		assert.equal(interpolate[0]({
 			foo: function() {
@@ -64,6 +62,7 @@ describe('expression', function() {
 				label: 'world'
 			}
 		}), 'hello');
+		assert.deepEqual(interpolate[1], ['foo', 'bar']);
 	})
 
 

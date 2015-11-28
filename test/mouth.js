@@ -7,23 +7,27 @@ var mouth = require('..');
 var assert = require('assert');
 
 
-describe('basic', function() {
+describe('interpolate', function() {
 
-	var interpolate =  mouth('${name}');
+	var template =  mouth('${name}');
 
 	it('should return a function', function() {
-		assert.equal(typeof interpolate[0], 'function');
+		assert.equal(typeof template[0], 'function');
 	});
-
 
 	it('should return a list of variable to interpolate', function() {
-		assert.deepEqual(interpolate[1], ['name']);
+		assert.deepEqual(template[1], ['name']);
 	});
 
-	it('should interpolate variable', function() {
-		assert.equal(interpolate[0]({
+	it('should interpolate variable inside expression', function() {
+		assert.equal(template[0]({
 			name: 'olivier'
 		}), 'olivier');
+	});
+
+	it('should not change regular strings', function() {
+		var template = mouth('hello world');
+		assert.equal(template[0](), 'hello world');
 	});
 
 });

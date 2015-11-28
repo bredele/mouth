@@ -22,9 +22,9 @@ module.exports = function(str, data) {
   str = str.replace(/(\$|\#)\{([^{}]*)\}/g, function(_, type, expr) {
     var compiled = parse(expr, list);
     if(type === '#') compiled = '"' + func(compiled)(data) + '"';
-    return compiled;
+    return '"+' + compiled  + '+"';
   });
-  return [func(str), list];
+  return [func('"' + str + '"'), list];
 };
 
 
